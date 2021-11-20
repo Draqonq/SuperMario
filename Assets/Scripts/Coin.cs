@@ -24,11 +24,7 @@ public class Coin : MonoBehaviour
         {
             transform.position += dropCoinSpeed;
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        else if (transform.position.y >= (startPosition.y + 1))
         {
             Debug.Log("Coin+");
             playerData.AddCoins(1);

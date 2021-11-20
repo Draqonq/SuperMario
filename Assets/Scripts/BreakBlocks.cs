@@ -43,7 +43,7 @@ public class BreakBlocks : MonoBehaviour
                 transform.position = startPosition;
                 isBreaking = false;
                 movesUp = true;
-                if(blockType == BlockType.MushroomBlock)
+                if(blockType == BlockType.MushroomBlock || (blockType == BlockType.CoinBlock && coins <= 0))
                 {
                     isEmptyBlock = true;
                 }
@@ -112,7 +112,6 @@ public class BreakBlocks : MonoBehaviour
 
     void ChangeBlockSprite()
     {
-        //change sprite
-        Debug.Log("ChangeBlockSprite");
+        GetComponent<SpriteRenderer>().sprite = emptyBlock;
     }
 }
