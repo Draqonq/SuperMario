@@ -11,7 +11,7 @@ public class GroundCheck : MonoBehaviour
         playerMovement = transform.parent.GetComponent<PlayerMovement>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if(collision.gameObject.name == "Foreground" || collision.gameObject.CompareTag("Bricks"))
         {
