@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    public PlayerData playerData;
+    PlayerData playerData;
     public Vector3 dropCoinSpeed = new Vector3(0, 0.01f);
     Vector3 startPosition;
     void Start()
     {
         startPosition = transform.position;
+        playerData = GameObject.Find("Data").GetComponent<PlayerData>();
     }
 
     private void Update()
@@ -29,9 +30,9 @@ public class Coin : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
             Debug.Log("Coin+");
             playerData.AddCoins(1);
+            Destroy(gameObject);
         }
     }
 
