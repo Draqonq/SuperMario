@@ -14,6 +14,7 @@ public class BreakBlocks : MonoBehaviour
     public BlockType blockType;
     public Sprite emptyBlock;
     public GameObject coin;
+    public GameObject boost;
 
     bool isBreaking = false;
     bool movesUp = true;
@@ -74,7 +75,10 @@ public class BreakBlocks : MonoBehaviour
             case BlockType.CoinBlock:
                 {
                     DropCoin();
-                    ChangeBlockSprite();
+                    if(coins <= 0)
+                    {
+                        ChangeBlockSprite();
+                    }
                     break;
                 }
             case BlockType.MushroomBlock:
@@ -106,8 +110,8 @@ public class BreakBlocks : MonoBehaviour
     void DropMushroom()
     {
         //drop mushroom + animation
+        Instantiate(boost, (transform.position + new Vector3(0, 0, 1)), Quaternion.identity);
         Debug.Log("Mushroom");
-        GetComponent<SpriteRenderer>().sprite = emptyBlock;
     }
 
     void ChangeBlockSprite()
