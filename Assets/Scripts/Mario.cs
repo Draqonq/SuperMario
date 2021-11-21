@@ -36,6 +36,24 @@ public class Mario : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Teleport"))
+        {
+            if (collision.gameObject.GetComponent<Teleport>().GetIsKey())
+            {
+                if (Input.GetKey(KeyCode.S))
+                {
+                    transform.position = collision.gameObject.GetComponent<Teleport>().GetTeleportPosition();
+                }
+            }
+            else
+            {
+                transform.position = collision.gameObject.GetComponent<Teleport>().GetTeleportPosition();
+            }
+        }
+    }
+
     /*private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.name == "Foreground" || collision.gameObject.CompareTag("Bricks"))

@@ -21,16 +21,28 @@ public class GroundCheck : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Foreground" || collision.gameObject.CompareTag("Bricks") || collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.name == "Foreground" 
+            || collision.gameObject.CompareTag("Bricks") 
+            || collision.gameObject.CompareTag("Enemy") 
+            || collision.gameObject.CompareTag("Collisions")
+            || collision.gameObject.CompareTag("Teleport"))
         {
             marioMovement.isGround = true;
             marioMovement.playerAnimator.SetBool("Jump", false);
+        }
+        else if (collision.gameObject.CompareTag("FieldOfDeath"))
+        {
+            Debug.Log("Smierc");
         }
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Foreground" || collision.gameObject.CompareTag("Bricks") || collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.name == "Foreground" 
+            || collision.gameObject.CompareTag("Bricks") 
+            || collision.gameObject.CompareTag("Enemy")
+            || collision.gameObject.CompareTag("Collisions")
+            || collision.gameObject.CompareTag("Teleport"))
         {
             marioMovement.isGround = false;
             marioMovement.playerAnimator.SetBool("Jump", true);
