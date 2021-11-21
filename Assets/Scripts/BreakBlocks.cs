@@ -52,7 +52,7 @@ public class BreakBlocks : MonoBehaviour
                 transform.position = startPosition;
                 isBreaking = false;
                 movesUp = true;
-                if(blockType == BlockType.MushroomBlock || (blockType == BlockType.CoinBlock && coins <= 0))
+                if(blockType == BlockType.MushroomBlock || (blockType == BlockType.CoinBlock && coins <= 0) || (blockType == BlockType.CoinBrick && coins <= 0))
                 {
                     isEmptyBlock = true;
                 }
@@ -86,7 +86,6 @@ public class BreakBlocks : MonoBehaviour
                     if (playerData.GetLevel() > 1)
                     {
                         DropCoin();
-                        HealthLoss();
                     }
                 }
                 break;
@@ -119,9 +118,13 @@ public class BreakBlocks : MonoBehaviour
 
     void DropCoin()
     {
-        //coins--;
+        coins--;
         //drop coin + animation
         Instantiate(coin, (transform.position + new Vector3(0,0,1)), Quaternion.identity);
+        if(coins <= 0)
+        {
+            ChangeBlockSprite();
+        }
         Debug.Log("Coin");
     }
 
