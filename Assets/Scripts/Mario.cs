@@ -9,10 +9,12 @@ public class Mario : MonoBehaviour
     float horizontalMove = 0f;
     BoxCollider2D groundCheck;
     public bool isGround;
+    PlayerData playerData;
     void Start()
     {
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
         groundCheck = transform.GetChild(0).GetComponent<BoxCollider2D>();
+        playerData = GameObject.Find("Data").GetComponent<PlayerData>();
         isGround = false;
     }
 
@@ -32,7 +34,7 @@ public class Mario : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy") && !collision.gameObject.GetComponent<Enemy>().IsDead())
         {
-            Debug.Log("Smierc");
+            playerData.LevelDown();
         }
     }
 

@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class StaticCoin : MonoBehaviour
 {
+    PlayerData playerData;
+    void Start()
+    {
+        playerData = GameObject.Find("Data").GetComponent<PlayerData>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

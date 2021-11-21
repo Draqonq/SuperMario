@@ -5,11 +5,13 @@ using UnityEngine;
 public class Boost : MonoBehaviour
 {
     PlayerData playerData;
+    
     public Vector3 dropBoostSpeed = new Vector3(0, 0.01f);
     Vector3 startPosition;
 
     bool isPushed;
     Vector3 boostMove;
+    bool isCollected = false;
     void Start()
     {
         startPosition = transform.position;
@@ -45,10 +47,10 @@ public class Boost : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (!isCollected && collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Boost");
-            //playerData. UpgradeCharacter
+            isCollected = true;
+            playerData.LevelUp();
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Collisions"))

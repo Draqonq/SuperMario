@@ -21,6 +21,14 @@ public class BreakBlocks : MonoBehaviour
     bool isEmptyBlock = false;
     Vector3 startPosition;
     Vector3 transformSpeed = new Vector3(0, 0.0125f, 0);
+
+    PlayerData playerData;
+
+    private void Start()
+    {
+        playerData = GameObject.Find("Data").GetComponent<PlayerData>();
+    }
+
     void Update()
     {
         if (isBreaking && !isEmptyBlock)
@@ -65,13 +73,23 @@ public class BreakBlocks : MonoBehaviour
     {
         switch (blockType)
         {
-            case BlockType.ClassicBrick: HealthLoss(); break;
+            case BlockType.ClassicBrick:
+                {
+                    if (playerData.GetLevel() > 1)
+                    {
+                        HealthLoss();
+                    }
+                }
+                break;
             case BlockType.CoinBrick:
                 {
-                    DropCoin();
-                    HealthLoss();
-                    break;
+                    if (playerData.GetLevel() > 1)
+                    {
+                        DropCoin();
+                        HealthLoss();
+                    }
                 }
+                break;
             case BlockType.CoinBlock:
                 {
                     DropCoin();
@@ -79,14 +97,14 @@ public class BreakBlocks : MonoBehaviour
                     {
                         ChangeBlockSprite();
                     }
-                    break;
                 }
+                break;
             case BlockType.MushroomBlock:
                 {
                     DropMushroom();
-                    ChangeBlockSprite(); 
-                    break;
+                    ChangeBlockSprite();
                 }
+                break;
         }
     }
 

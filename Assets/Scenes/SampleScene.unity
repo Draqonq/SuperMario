@@ -989,6 +989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coins: 0
+  level: 1
   time: 0
   lives: 0
 --- !u!4 &292529752
@@ -11254,7 +11255,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690769143}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.1, y: -2.03, z: 0}
+  m_LocalPosition: {x: -5.1, y: -2.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1655985409}
@@ -12559,6 +12560,14 @@ PrefabInstance:
     - target: {fileID: 1303274132590305233, guid: 687becb9b2e7477438f2ee3616d9719c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303274132590305238, guid: 687becb9b2e7477438f2ee3616d9719c, type: 3}
+      propertyPath: teleportPosition.x
+      value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303274132590305238, guid: 687becb9b2e7477438f2ee3616d9719c, type: 3}
+      propertyPath: teleportPosition.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 687becb9b2e7477438f2ee3616d9719c, type: 3}
