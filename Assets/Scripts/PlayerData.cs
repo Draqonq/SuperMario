@@ -5,9 +5,12 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
     public int coins;
+    public int score;
     public int level;
     public int time;
     public int lives;
+
+    public Interface ui;
 
     Transform marioPlayer;
     SpriteRenderer marioSprite;
@@ -21,6 +24,13 @@ public class PlayerData : MonoBehaviour
     public void AddCoins(int coins)
     {
         this.coins += coins;
+        ui.SetCoinText(this.coins);
+    }
+
+    public void AddScore(int score)
+    {
+        this.score += score;
+        ui.SetScoreText(this.score);
     }
 
     public void Death()
@@ -31,6 +41,7 @@ public class PlayerData : MonoBehaviour
     public void LevelUp()
     {
         this.level++;
+        AddScore(1000);
         SetLevel();
     }
 

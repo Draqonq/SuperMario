@@ -48,10 +48,13 @@ public class Enemy : MonoBehaviour
     {
         if (!isDead)
         {
+            enemyCollider.enabled = false;
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            transform.position -= new Vector3(0, 0.2f, -1);
             isDead = true;
             enemyAnimator.SetBool("isDead", true);
-            enemyCollider.size = new Vector2(enemyCollider.size.x, 0.01f);
-            enemyCollider.offset = new Vector2(enemyCollider.offset.x, -0.25f);
+            //enemyCollider.size = new Vector2(enemyCollider.size.x, 0.01f);
+            //enemyCollider.offset = new Vector2(enemyCollider.offset.x, -0.25f);
         }
         
     }

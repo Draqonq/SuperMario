@@ -5,16 +5,19 @@ using UnityEngine;
 public class GroundCheck : MonoBehaviour
 {
     Mario marioMovement;
+    PlayerData playerData;
 
     private void Start()
     {
         marioMovement = transform.parent.GetComponent<Mario>();
+        playerData = GameObject.Find("Data").GetComponent<PlayerData>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            playerData.AddScore(100);
             collision.gameObject.GetComponent<Enemy>().Dead();
         }
     }

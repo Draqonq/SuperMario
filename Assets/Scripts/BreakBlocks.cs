@@ -112,6 +112,7 @@ public class BreakBlocks : MonoBehaviour
         blockHealth--;
         if(blockHealth <= 0)
         {
+            playerData.AddScore(50);
             Destroy(gameObject);
         }
     }
@@ -119,13 +120,14 @@ public class BreakBlocks : MonoBehaviour
     void DropCoin()
     {
         coins--;
+        playerData.AddScore(200);
+        playerData.AddCoins(1);
         //drop coin + animation
         Instantiate(coin, (transform.position + new Vector3(0,0,1)), Quaternion.identity);
         if(coins <= 0)
         {
             ChangeBlockSprite();
         }
-        Debug.Log("Coin");
     }
 
     void DropMushroom()

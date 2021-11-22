@@ -15,6 +15,8 @@ public class StaticCoin : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Coin+");
+            playerData.AddCoins(1);
+            playerData.AddScore(200);
             Destroy(gameObject);
         }
     }
