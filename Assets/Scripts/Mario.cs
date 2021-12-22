@@ -9,6 +9,7 @@ public class Mario : MonoBehaviour
     float horizontalMove = 0f;
     BoxCollider2D groundCheck;
     public bool isGround;
+    public bool isAlive;
     PlayerData playerData;
     public CameraFollow cameraFollow;
     void Start()
@@ -17,17 +18,21 @@ public class Mario : MonoBehaviour
         groundCheck = transform.GetChild(0).GetComponent<BoxCollider2D>();
         playerData = GameObject.Find("Data").GetComponent<PlayerData>();
         isGround = false;
+        isAlive = true;
     }
 
     void Update()
     {
-        horizontalMove = Input.GetAxis("Horizontal");
-        transform.position += new Vector3(horizontalMove, 0, 0) * Time.deltaTime * 4;
-        playerAnimator.SetFloat("Horizontal", horizontalMove);
-
-        if (Input.GetKey(KeyCode.W) && Mathf.Abs(rigidBody.velocity.y) < 0.001f && isGround == true)
+        if (isAlive)
         {
-            rigidBody.AddForce(new Vector2(0, 9f), ForceMode2D.Impulse);
+            horizontalMove = Input.GetAxis("Horizontal");
+            transform.position += new Vector3(horizontalMove, 0, 0) * Time.deltaTime * 4;
+            playerAnimator.SetFloat("Horizontal", horizontalMove);
+
+            if (Input.GetKey(KeyCode.W) && Mathf.Abs(rigidBody.velocity.y) < 0.001f && isGround == true)
+            {
+                rigidBody.AddForce(new Vector2(0, 9f), ForceMode2D.Impulse);
+            }
         }
     }
 

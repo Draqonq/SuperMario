@@ -1611,6 +1611,8 @@ MonoBehaviour:
   time: 0
   lives: 0
   ui: {fileID: 1021843786}
+  marioAnimator: {fileID: 1690769144}
+  marioObject: {fileID: 1690769143}
 --- !u!4 &292529752
 Transform:
   m_ObjectHideFlags: 0
@@ -21937,6 +21939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 1690769144}
   isGround: 0
+  isAlive: 0
   cameraFollow: {fileID: 519420033}
 --- !u!70 &1690769146
 CapsuleCollider2D:
