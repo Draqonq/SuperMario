@@ -10,6 +10,7 @@ public class Mario : MonoBehaviour
     BoxCollider2D groundCheck;
     public bool isGround;
     PlayerData playerData;
+    public CameraFollow cameraFollow;
     void Start()
     {
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
@@ -47,11 +48,13 @@ public class Mario : MonoBehaviour
                 if (Input.GetKey(KeyCode.S))
                 {
                     transform.position = collision.gameObject.GetComponent<Teleport>().GetTeleportPosition();
+                    cameraFollow.TeleportPosition(-17);
                 }
             }
             else
             {
                 transform.position = collision.gameObject.GetComponent<Teleport>().GetTeleportPosition();
+                cameraFollow.TeleportPosition(1);
             }
         }
     }
