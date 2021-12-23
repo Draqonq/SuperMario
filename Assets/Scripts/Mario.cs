@@ -12,6 +12,13 @@ public class Mario : MonoBehaviour
     public bool isAlive;
     PlayerData playerData;
     public CameraFollow cameraFollow;
+
+    //Button movement
+    bool buttonLeft;
+    bool buttonRight;
+    bool buttonUp;
+    bool buttonDown;
+
     void Start()
     {
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
@@ -25,11 +32,32 @@ public class Mario : MonoBehaviour
     {
         if (isAlive)
         {
-            horizontalMove = Input.GetAxis("Horizontal");
-            transform.position += new Vector3(horizontalMove, 0, 0) * Time.deltaTime * 4;
+            //Keyboard movement
+            if(!buttonRight && !buttonLeft)
+            {
+                horizontalMove = Input.GetAxis("Horizontal");
+                transform.position += new Vector3(horizontalMove, 0, 0) * Time.deltaTime * 4;
+            }
+
+            //Button movement
+            if (buttonRight)
+            {
+                horizontalMove = 1;
+                transform.position += new Vector3(horizontalMove, 0, 0) * Time.deltaTime * 4;
+                //playerAnimator.SetFloat("Horizontal", horizontalMove);
+            }
+            if (buttonLeft)
+            {
+                horizontalMove = -1;
+                transform.position += new Vector3(horizontalMove, 0, 0) * Time.deltaTime * 4;
+                //playerAnimator.SetFloat("Horizontal", horizontalMove);
+            }
+
+            //Animation
             playerAnimator.SetFloat("Horizontal", horizontalMove);
 
-            if (Input.GetKey(KeyCode.W) && Mathf.Abs(rigidBody.velocity.y) < 0.001f && isGround == true)
+            //Jump
+            if ((buttonUp || Input.GetKey(KeyCode.W)) && Mathf.Abs(rigidBody.velocity.y) < 0.001f && isGround == true)
             {
                 rigidBody.AddForce(new Vector2(0, 9f), ForceMode2D.Impulse);
             }
@@ -50,7 +78,7 @@ public class Mario : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<Teleport>().GetIsKey())
             {
-                if (Input.GetKey(KeyCode.S))
+                if (Input.GetKey(KeyCode.S) || buttonDown)
                 {
                     transform.position = collision.gameObject.GetComponent<Teleport>().GetTeleportPosition();
                     cameraFollow.TeleportPosition(-17);
@@ -62,6 +90,58 @@ public class Mario : MonoBehaviour
                 cameraFollow.TeleportPosition(1);
             }
         }
+    }
+
+    public void ButtonRightOn()
+    {
+        if (!buttonLeft)
+        {
+            buttonRight = true;
+        }
+    }
+
+    public void ButtonRightOff()
+    {
+        if(!buttonLeft && buttonRight)
+        {
+            buttonRight = false;
+        }
+    }
+
+    public void ButtonLeftOn()
+    {
+        if (!buttonRight)
+        {
+            buttonLeft = true;
+        }
+    }
+
+    public void ButtonLeftOff()
+    {
+        if (!buttonRight && buttonLeft)
+        {
+            buttonLeft = false;
+        }
+    }
+
+    public void ButtonUpOn()
+    {
+        buttonUp = true;
+    }
+
+    public void ButtonUpOff()
+    {
+        buttonUp = false;
+    }
+
+    public void ButtonDownOn()
+    {
+        buttonDown = true;
+    }
+
+    public void ButtonDownOff()
+    {
+        buttonDown = false;
     }
 
     /*private void OnCollisionStay2D(Collision2D collision)

@@ -3128,6 +3128,7 @@ GameObject:
   - component: {fileID: 565966705}
   - component: {fileID: 565966704}
   - component: {fileID: 565966703}
+  - component: {fileID: 565966706}
   m_Layer: 5
   m_Name: keyDown
   m_TagString: Untagged
@@ -3237,6 +3238,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565966701}
   m_CullTransparentMesh: 1
+--- !u!114 &565966706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565966701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1690769145}
+          m_TargetAssemblyTypeName: Mario, Assembly-CSharp
+          m_MethodName: ButtonDownOn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1690769145}
+          m_TargetAssemblyTypeName: Mario, Assembly-CSharp
+          m_MethodName: ButtonDownOff
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &588948070
 GameObject:
   m_ObjectHideFlags: 0
@@ -20016,6 +20062,7 @@ GameObject:
   - component: {fileID: 1451587848}
   - component: {fileID: 1451587847}
   - component: {fileID: 1451587846}
+  - component: {fileID: 1451587849}
   m_Layer: 5
   m_Name: keyRight
   m_TagString: Untagged
@@ -20125,6 +20172,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451587844}
   m_CullTransparentMesh: 1
+--- !u!114 &1451587849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451587844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1690769145}
+          m_TargetAssemblyTypeName: Mario, Assembly-CSharp
+          m_MethodName: ButtonRightOn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1690769145}
+          m_TargetAssemblyTypeName: Mario, Assembly-CSharp
+          m_MethodName: ButtonRightOff
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1453722126
 GameObject:
   m_ObjectHideFlags: 0
@@ -20137,6 +20229,7 @@ GameObject:
   - component: {fileID: 1453722130}
   - component: {fileID: 1453722129}
   - component: {fileID: 1453722128}
+  - component: {fileID: 1453722131}
   m_Layer: 5
   m_Name: keyLeft
   m_TagString: Untagged
@@ -20246,6 +20339,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1453722126}
   m_CullTransparentMesh: 1
+--- !u!114 &1453722131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453722126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1690769145}
+          m_TargetAssemblyTypeName: Mario, Assembly-CSharp
+          m_MethodName: ButtonLeftOn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1690769145}
+          m_TargetAssemblyTypeName: Mario, Assembly-CSharp
+          m_MethodName: ButtonLeftOff
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1474472112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22058,6 +22196,7 @@ GameObject:
   - component: {fileID: 1708506302}
   - component: {fileID: 1708506301}
   - component: {fileID: 1708506300}
+  - component: {fileID: 1708506303}
   m_Layer: 5
   m_Name: keyUp
   m_TagString: Untagged
@@ -22167,6 +22306,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708506298}
   m_CullTransparentMesh: 1
+--- !u!114 &1708506303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708506298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1690769145}
+          m_TargetAssemblyTypeName: Mario, Assembly-CSharp
+          m_MethodName: ButtonUpOn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1690769145}
+          m_TargetAssemblyTypeName: Mario, Assembly-CSharp
+          m_MethodName: ButtonUpOff
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!4 &1714050060 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2029565459914607837, guid: 570e621965b7ed349a8af1e42537eafe, type: 3}
