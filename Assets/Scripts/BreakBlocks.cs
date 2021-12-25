@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Type of block
 public enum BlockType
 {
     ClassicBrick, CoinBrick, CoinBlock, MushroomBlock 

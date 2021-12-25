@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Moneta która pojawia siê po zniszczeniu bloku
+
+
 public class Coin : MonoBehaviour
 {
-    public Vector3 dropCoinSpeed = new Vector3(0, 0.01f);
+    public float dropCoinSpeed = 0.01f;
+
+    Vector3 dropCoinVector;
     Vector3 startPosition;
     void Start()
     {
         startPosition = transform.position;
+        dropCoinVector = new Vector3(0, dropCoinSpeed);
     }
 
     private void Update()
@@ -18,10 +24,12 @@ public class Coin : MonoBehaviour
 
     void DropCoin()
     {
+        //Up
         if (transform.position.y < (startPosition.y + 1))
         {
-            transform.position += dropCoinSpeed;
+            transform.position += dropCoinVector;
         }
+        //Destroy
         else if (transform.position.y >= (startPosition.y + 1))
         {
             Destroy(gameObject);
