@@ -37,9 +37,15 @@ public class PlayerData : MonoBehaviour
         ui.SetScoreText(this.score);
     }
 
-    public void Death()
+    public void LivesLoss()
     {
         this.lives--;
+        ui.SetLiveText(lives);
+    }
+
+    public void Death()
+    {
+        LivesLoss();
         deadStartPosition = marioPlayer.position.y;
         marioAnimator.SetBool("Dead", true);
         marioObject.GetComponent<Mario>().isAlive = false;
