@@ -101,7 +101,7 @@ public class PlayerData : MonoBehaviour
         else if (level >= 3)
         {
             marioPlayer.localScale = new Vector2(1, 2);
-            marioSprite.color = Color.red;
+            marioSprite.color = new Color(0.4f, 0,0);
             //sprite white
         }
         else if (level <= 0)
