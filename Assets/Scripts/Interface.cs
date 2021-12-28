@@ -9,11 +9,6 @@ public class Interface : MonoBehaviour
     public Text liveText;
     public Text timeText;
 
-    public void SetCoinText(int coin)
-    {
-        //coinText.text = coin.ToString();
-    }
-
     public void SetScoreText(int score)
     {
         scoreText.text = score.ToString();

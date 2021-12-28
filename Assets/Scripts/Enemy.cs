@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     Vector3 enemyMove;
     bool isDead = false;
+    float destroyTimer;
     Animator enemyAnimator;
     BoxCollider2D enemyCollider;
 
@@ -14,6 +15,7 @@ public class Enemy : MonoBehaviour
         enemyMove = new Vector3(.0025f, 0);
         enemyAnimator = GetComponent<Animator>();
         enemyCollider = GetComponent<BoxCollider2D>();
+        destroyTimer = 0;
     }
 
     private void Update()
@@ -21,6 +23,14 @@ public class Enemy : MonoBehaviour
         if (!isDead)
         {
             transform.position += enemyMove;
+        }
+        else
+        {
+            destroyTimer += Time.deltaTime;
+            if(destroyTimer > 1.2f)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

@@ -20,6 +20,10 @@ public class PlayerData : MonoBehaviour
     bool isDead;
     float deadStartPosition;
 
+    //Win
+    public bool winLevel = false;
+    float winLevelAddScore = 0;
+
     private void Start()
     {
         marioPlayer = GameObject.Find("MarioPlayer").GetComponent<Transform>();
@@ -37,7 +41,6 @@ public class PlayerData : MonoBehaviour
     public void AddCoins(int coins)
     {
         this.coins += coins;
-        ui.SetCoinText(this.coins);
     }
 
     public void AddScore(int score)
@@ -134,7 +137,7 @@ public class PlayerData : MonoBehaviour
         }
 
         //time to end
-        if(time > 0)
+        if(time > 0 && !winLevel)
         {
             time -= Time.deltaTime;
             //ui.SetTimeText(time);
@@ -144,12 +147,28 @@ public class PlayerData : MonoBehaviour
                 ui.SetTimeText(intTime);
             }
         }
-        else if(time > -1)
+        else if(time > -1 && !winLevel)
         {
             ui.SetTimeText(0);
             Debug.Log("DED");
             time = -1;
             Death();
+        }
+        else if (winLevel)
+        {
+            winLevelAddScore += Time.deltaTime;
+            if(winLevelAddScore >= 0.04f && time > 0)
+            {
+                time--;
+                ui.SetTimeText((int)time);
+                AddScore(100);
+                winLevelAddScore = 0;
+            }
+            else if(time <= 0)
+            {
+                winLevel = false;
+                //Kolejny poziom <---
+            }
         }
         
     }

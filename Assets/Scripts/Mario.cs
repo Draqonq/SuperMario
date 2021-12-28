@@ -12,6 +12,8 @@ public class Mario : MonoBehaviour
     public bool isAlive;
     PlayerData playerData;
     public CameraFollow cameraFollow;
+    //Win Level
+    bool isWinLevel;
 
     //Button movement
     bool buttonLeft;
@@ -26,6 +28,7 @@ public class Mario : MonoBehaviour
         playerData = GameObject.Find("Data").GetComponent<PlayerData>();
         isGround = false;
         isAlive = true;
+        isWinLevel = false;
     }
 
     void Update()
@@ -62,6 +65,15 @@ public class Mario : MonoBehaviour
                 rigidBody.AddForce(new Vector2(0, 9f), ForceMode2D.Impulse);
             }
         }
+        if (isWinLevel && transform.position.y > -1.5f)
+        {
+            //WIN
+            transform.position -= new Vector3(0, Time.deltaTime * 2.5f, 0);
+        }
+        else if(isWinLevel && transform.position.y <= -1.5f)
+        {
+            playerData.winLevel = true;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -69,6 +81,11 @@ public class Mario : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") && !collision.gameObject.GetComponent<Enemy>().IsDead())
         {
             playerData.LevelDown();
+        }
+        else if (collision.gameObject.CompareTag("End"))
+        {
+            EndLevel(collision.gameObject.GetComponent<EndRope>().ropeXPosition);
+            Debug.Log("End");
         }
     }
 
@@ -145,29 +162,15 @@ public class Mario : MonoBehaviour
         buttonDown = false;
     }
 
-    /*private void OnCollisionStay2D(Collision2D collision)
+    public void EndLevel(float endXPosition)
     {
-        if (collision.gameObject.name == "Foreground" || collision.gameObject.CompareTag("Bricks"))
-        {
-            isGround = true;
-            playerAnimator.SetBool("Jump", false);
-        }
+        transform.position = new Vector3(endXPosition, transform.position.y, 0);
+        playerAnimator.SetBool("WinLevel", true);
+        isAlive = false;
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = false;
+        transform.GetChild(1).GetComponent<BoxCollider2D>().enabled = false;
+        isWinLevel = true;
     }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "Foreground" || collision.gameObject.CompareTag("Bricks"))
-        {
-            isGround = false;
-            playerAnimator.SetBool("Jump", true);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Bricks"))
-        {
-            collision.gameObject.GetComponent<BreakBlocks>().BreakBlock();
-        }
-    }*/
 }
