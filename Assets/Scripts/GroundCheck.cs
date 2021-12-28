@@ -35,7 +35,7 @@ public class GroundCheck : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("FieldOfDeath"))
         {
-            Debug.Log("Smierc");
+            playerData.Death();
         }
     }
 

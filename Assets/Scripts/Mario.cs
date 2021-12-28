@@ -72,13 +72,13 @@ public class Mario : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Teleport"))
         {
             if (collision.gameObject.GetComponent<Teleport>().GetIsKey())
             {
-                if (Input.GetKey(KeyCode.S) || buttonDown)
+                if ((Input.GetKey(KeyCode.S) || buttonDown) && isGround)
                 {
                     transform.position = collision.gameObject.GetComponent<Teleport>().GetTeleportPosition();
                     cameraFollow.TeleportPosition(-17);
@@ -91,6 +91,7 @@ public class Mario : MonoBehaviour
             }
         }
     }
+
 
     public void ButtonRightOn()
     {

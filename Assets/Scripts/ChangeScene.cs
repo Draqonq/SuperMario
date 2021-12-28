@@ -8,6 +8,7 @@ public class ChangeScene : MonoBehaviour
 
     public void StartGame()
     {
+        PlayerPrefs.DeleteAll();
         SceneManager.LoadScene("SampleScene");
     }
 }

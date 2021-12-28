@@ -24,4 +24,16 @@ public class Interface : MonoBehaviour
         liveText.text = live.ToString();
     }
 
+    public void SetTimeText(int time)
+    {
+        timeText.text = time.ToString();
+    }
+
+    public void SetAll(int score, int live, int time)
+    {
+        scoreText.text = score.ToString();
+        liveText.text = live.ToString();
+        timeText.text = time.ToString();
+    }
+
 }

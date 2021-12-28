@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerData : MonoBehaviour
 {
     public int coins;
     public int score;
     public int level;
-    public int time;
+    public float time;
     public int lives;
 
     public Interface ui;
@@ -23,6 +24,14 @@ public class PlayerData : MonoBehaviour
     {
         marioPlayer = GameObject.Find("MarioPlayer").GetComponent<Transform>();
         marioSprite = GameObject.Find("MarioPlayer").GetComponent<SpriteRenderer>();
+
+        if(PlayerPrefs.HasKey("coins") && PlayerPrefs.HasKey("score") && PlayerPrefs.HasKey("lives"))
+        {
+            coins = PlayerPrefs.GetInt("coins");
+            score = PlayerPrefs.GetInt("score");
+            lives = PlayerPrefs.GetInt("lives");
+        }
+        ui.SetAll(score, lives, (int)time);
     }
 
     public void AddCoins(int coins)
@@ -46,6 +55,9 @@ public class PlayerData : MonoBehaviour
     public void Death()
     {
         LivesLoss();
+        PlayerPrefs.SetInt("coins", coins);
+        PlayerPrefs.SetInt("score", score);
+        PlayerPrefs.SetInt("lives", lives);
         deadStartPosition = marioPlayer.position.y;
         marioAnimator.SetBool("Dead", true);
         marioObject.GetComponent<Mario>().isAlive = false;
@@ -102,6 +114,7 @@ public class PlayerData : MonoBehaviour
 
     private void Update()
     {
+        //Player Dead
         if (isDead)
         {
             marioPlayer.position += new Vector3(0, 1.5f * Time.deltaTime, 0);
@@ -109,8 +122,35 @@ public class PlayerData : MonoBehaviour
             {
                 isDead = false;
                 //Start level
+                if(lives > 0)
+                {
+                    SceneManager.LoadScene("SampleScene");
+                }
+                else
+                {
+                    SceneManager.LoadScene("Menu");
+                }
             }
         }
+
         //time to end
+        if(time > 0)
+        {
+            time -= Time.deltaTime;
+            //ui.SetTimeText(time);
+            if (time % 1.0 < 0.01f)
+            {
+                int intTime = (int)time;
+                ui.SetTimeText(intTime);
+            }
+        }
+        else if(time > -1)
+        {
+            ui.SetTimeText(0);
+            Debug.Log("DED");
+            time = -1;
+            Death();
+        }
+        
     }
 }
