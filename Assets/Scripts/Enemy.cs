@@ -138,6 +138,10 @@ public class Enemy : MonoBehaviour
             //enemyCollider.size = new Vector2(enemyCollider.size.x, 0.01f);
             //enemyCollider.offset = new Vector2(enemyCollider.offset.x, -0.25f);
         }
+        else if (!isDead && enemyType.Equals(EnemyType.Flower))
+        {
+            Destroy(gameObject);
+        }
 
 
     }

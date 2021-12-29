@@ -21,6 +21,9 @@ public class Mario : MonoBehaviour
     bool buttonUp;
     bool buttonDown;
 
+    //Fireball
+    public Fireball fireball;
+
     void Start()
     {
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
@@ -64,6 +67,13 @@ public class Mario : MonoBehaviour
             {
                 rigidBody.AddForce(new Vector2(0, 9f), ForceMode2D.Impulse);
             }
+
+            //Shoot
+            if (Input.GetKey(KeyCode.Space))
+            {
+                fireball.Shoot();
+            }
+
         }
         if (isWinLevel && transform.position.y > -1.5f)
         {
