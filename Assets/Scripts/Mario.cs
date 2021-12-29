@@ -69,7 +69,7 @@ public class Mario : MonoBehaviour
             }
 
             //Shoot
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space) && playerData.GetLevel() > 2)
             {
                 fireball.Shoot();
             }

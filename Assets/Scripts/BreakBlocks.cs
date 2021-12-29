@@ -135,7 +135,6 @@ public class BreakBlocks : MonoBehaviour
     {
         //drop mushroom + animation
         Instantiate(boost, (transform.position + new Vector3(0, 0, 1)), Quaternion.identity);
-        Debug.Log("Mushroom");
     }
 
     void ChangeBlockSprite()

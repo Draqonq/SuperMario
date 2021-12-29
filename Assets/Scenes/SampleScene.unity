@@ -1528,7 +1528,10 @@ MonoBehaviour:
   time: 150
   lives: 3
   ui: {fileID: 1021843786}
+  fireBallTransform: {fileID: 1956392245}
   marioAnimator: {fileID: 1690769144}
+  smallMario: {fileID: 677675705482949565, guid: db5fa97ce8f45c243b86e06a31058b47, type: 3}
+  bigMario: {fileID: 2944609400316241293, guid: db5fa97ce8f45c243b86e06a31058b47, type: 3}
   marioObject: {fileID: 1690769143}
   winLevel: 0
 --- !u!4 &292529752
@@ -25544,7 +25547,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &1956392248
 CircleCollider2D:
   m_ObjectHideFlags: 0

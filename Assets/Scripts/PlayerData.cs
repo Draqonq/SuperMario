@@ -14,8 +14,12 @@ public class PlayerData : MonoBehaviour
     public Interface ui;
 
     Transform marioPlayer;
+    public Transform fireBallTransform;
     SpriteRenderer marioSprite;
     public Animator marioAnimator;
+    public Sprite smallMario;
+    public Sprite bigMario;
+
     public GameObject marioObject;
     bool isDead;
     float deadStartPosition;
@@ -89,18 +93,21 @@ public class PlayerData : MonoBehaviour
         if(level == 1)
         {
             marioPlayer.localScale = new Vector2(1, 1);
+            fireBallTransform.localScale = new Vector2(0.2f, 0.2f);
             marioSprite.color = Color.white;
             //sprite normal
         }
         else if (level == 2)
         {
             marioPlayer.localScale = new Vector2(1, 2);
+            fireBallTransform.localScale = new Vector2(0.2f, 0.1f);
             marioSprite.color = Color.white;
             //sprite normal
         }
         else if (level >= 3)
         {
             marioPlayer.localScale = new Vector2(1, 2);
+            fireBallTransform.localScale = new Vector2(0.2f, 0.1f);
             marioSprite.color = new Color(0.4f, 0,0);
             //sprite white
         }
