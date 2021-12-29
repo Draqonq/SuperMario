@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FlowerMouth
+  m_Name: TortoiseRight
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,11 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 2725196459281468364, guid: db5fa97ce8f45c243b86e06a31058b47, type: 3}
+      value: {fileID: -5987286173587437323, guid: db5fa97ce8f45c243b86e06a31058b47, type: 3}
     - time: 0.41666666
-      value: {fileID: 8129486117933382800, guid: db5fa97ce8f45c243b86e06a31058b47, type: 3}
+      value: {fileID: -265605657622104752, guid: db5fa97ce8f45c243b86e06a31058b47, type: 3}
     - time: 0.8333333
-      value: {fileID: 2725196459281468364, guid: db5fa97ce8f45c243b86e06a31058b47, type: 3}
+      value: {fileID: -5987286173587437323, guid: db5fa97ce8f45c243b86e06a31058b47, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,9 +44,9 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 2725196459281468364, guid: db5fa97ce8f45c243b86e06a31058b47, type: 3}
-    - {fileID: 8129486117933382800, guid: db5fa97ce8f45c243b86e06a31058b47, type: 3}
-    - {fileID: 2725196459281468364, guid: db5fa97ce8f45c243b86e06a31058b47, type: 3}
+    - {fileID: -5987286173587437323, guid: db5fa97ce8f45c243b86e06a31058b47, type: 3}
+    - {fileID: -265605657622104752, guid: db5fa97ce8f45c243b86e06a31058b47, type: 3}
+    - {fileID: -5987286173587437323, guid: db5fa97ce8f45c243b86e06a31058b47, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

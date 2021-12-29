@@ -22,12 +22,19 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        enemyAnimator = GetComponent<Animator>();
+        enemyCollider = GetComponent<BoxCollider2D>();
         if (enemyType.Equals(EnemyType.Mushroom))
         {
             enemyMove = new Vector3(.0025f, 0);
-            enemyAnimator = GetComponent<Animator>();
             enemyAnimator.SetInteger("EnemyType", 0);
-            enemyCollider = GetComponent<BoxCollider2D>();
+            destroyTimer = 0;
+        }
+        else if (enemyType.Equals(EnemyType.Tortoise))
+        {
+            enemyMove = new Vector3(.0025f, 0);
+            enemyAnimator.SetInteger("EnemyType", 2);
+            enemyAnimator.SetFloat("Horizontal", 1);
             destroyTimer = 0;
         }
         else if (enemyType.Equals(EnemyType.Flower))
@@ -40,18 +47,39 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (!isDead && enemyType.Equals(EnemyType.Mushroom))
+        //Grzyb
+        if (enemyType.Equals(EnemyType.Mushroom))
         {
-            transform.position += enemyMove;
-        }
-        else if(enemyType.Equals(EnemyType.Mushroom))
-        {
-            destroyTimer += Time.deltaTime;
-            if(destroyTimer > 1.2f)
+            if (!isDead)
             {
-                Destroy(gameObject);
+                transform.position += enemyMove;
+            }
+            else
+            {
+                destroyTimer += Time.deltaTime;
+                if (destroyTimer > 1.2f)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
+        //¯ó³w
+        else if (enemyType.Equals(EnemyType.Tortoise))
+        {
+            if (!isDead)
+            {
+                transform.position += enemyMove;
+            }
+            else
+            {
+                destroyTimer += Time.deltaTime;
+                if (destroyTimer > 1.2f)
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
+        //Roœlinka
         else if(enemyType.Equals(EnemyType.Flower))
         {
             if (flowerTransformUp) //Up
@@ -76,15 +104,18 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((collision.gameObject.CompareTag("Collisions") || collision.gameObject.CompareTag("Enemy")) && enemyType.Equals(EnemyType.Mushroom))
+        if ((collision.gameObject.CompareTag("Collisions") || collision.gameObject.CompareTag("Enemy")) 
+            && (enemyType.Equals(EnemyType.Mushroom) || enemyType.Equals(EnemyType.Tortoise)))
         {
             if (collision.gameObject.transform.position.x > transform.position.x)
             {
                 enemyMove = new Vector3(-0.0025f, 0);
+                enemyAnimator.SetFloat("Horizontal", -1);
             }
             else
             {
                 enemyMove = new Vector3(0.0025f, 0);
+                enemyAnimator.SetFloat("Horizontal", 1);
             }
         }
     }
@@ -96,7 +127,8 @@ public class Enemy : MonoBehaviour
 
     public void Dead()
     {
-        if (!isDead && enemyType.Equals(EnemyType.Mushroom))
+        if (!isDead 
+            && (enemyType.Equals(EnemyType.Mushroom) || enemyType.Equals(EnemyType.Tortoise)))
         {
             enemyCollider.enabled = false;
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
@@ -106,6 +138,7 @@ public class Enemy : MonoBehaviour
             //enemyCollider.size = new Vector2(enemyCollider.size.x, 0.01f);
             //enemyCollider.offset = new Vector2(enemyCollider.offset.x, -0.25f);
         }
-        
+
+
     }
 }

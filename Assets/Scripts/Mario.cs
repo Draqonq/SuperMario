@@ -85,7 +85,6 @@ public class Mario : MonoBehaviour
         else if (collision.gameObject.CompareTag("End"))
         {
             EndLevel(collision.gameObject.GetComponent<EndRope>().ropeXPosition);
-            Debug.Log("End");
         }
     }
 
@@ -106,6 +105,14 @@ public class Mario : MonoBehaviour
                 transform.position = collision.gameObject.GetComponent<Teleport>().GetTeleportPosition();
                 cameraFollow.TeleportPosition(1);
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            playerData.Death();
         }
     }
 
