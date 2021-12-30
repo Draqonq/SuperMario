@@ -24,6 +24,9 @@ public class Mario : MonoBehaviour
     //Fireball
     public Fireball fireball;
 
+    //Sound
+    public SoundManager soundManager;
+
     void Start()
     {
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
@@ -34,7 +37,7 @@ public class Mario : MonoBehaviour
         isWinLevel = false;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (isAlive)
         {
@@ -42,20 +45,20 @@ public class Mario : MonoBehaviour
             if(!buttonRight && !buttonLeft)
             {
                 horizontalMove = Input.GetAxis("Horizontal");
-                transform.position += new Vector3(horizontalMove, 0, 0) * Time.deltaTime * 4;
+                transform.position += new Vector3(horizontalMove, 0, 0) * Time.fixedDeltaTime * 4;
             }
 
             //Button movement
             if (buttonRight)
             {
                 horizontalMove = 1;
-                transform.position += new Vector3(horizontalMove, 0, 0) * Time.deltaTime * 4;
+                transform.position += new Vector3(horizontalMove, 0, 0) * Time.fixedDeltaTime * 4;
                 //playerAnimator.SetFloat("Horizontal", horizontalMove);
             }
             if (buttonLeft)
             {
                 horizontalMove = -1;
-                transform.position += new Vector3(horizontalMove, 0, 0) * Time.deltaTime * 4;
+                transform.position += new Vector3(horizontalMove, 0, 0) * Time.fixedDeltaTime * 4;
                 //playerAnimator.SetFloat("Horizontal", horizontalMove);
             }
 
@@ -66,6 +69,7 @@ public class Mario : MonoBehaviour
             if ((buttonUp || Input.GetKey(KeyCode.W)) && Mathf.Abs(rigidBody.velocity.y) < 0.001f && isGround == true)
             {
                 rigidBody.AddForce(new Vector2(0, 9f), ForceMode2D.Impulse);
+                soundManager.PlaySound(SoundName.Jump);
             }
 
             //Shoot
@@ -78,7 +82,7 @@ public class Mario : MonoBehaviour
         if (isWinLevel && transform.position.y > -1.5f)
         {
             //WIN
-            transform.position -= new Vector3(0, Time.deltaTime * 2.5f, 0);
+            transform.position -= new Vector3(0, Time.fixedDeltaTime * 2.5f, 0);
         }
         else if(isWinLevel && transform.position.y <= -1.5f)
         {
@@ -179,8 +183,15 @@ public class Mario : MonoBehaviour
         buttonDown = false;
     }
 
+    public void ButtonShoot()
+    {
+        fireball.Shoot();
+    }
+
     public void EndLevel(float endXPosition)
     {
+        GetComponent<AudioSource>().Stop();
+        soundManager.PlaySound(SoundName.WinGame);
         transform.position = new Vector3(endXPosition, transform.position.y, 0);
         playerAnimator.SetBool("WinLevel", true);
         isAlive = false;

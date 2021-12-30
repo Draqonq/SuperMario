@@ -42,7 +42,7 @@ public class CameraFollow : MonoBehaviour
 
         //camera speed equal to mario movement speed if he is going faster, or deafault if he doesnt
         float moveSpeed = rb.velocity.magnitude > speed ? rb.velocity.magnitude : speed;
-        transform.position = Vector3.MoveTowards(transform.position, newPosition, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, newPosition, moveSpeed * Time.fixedDeltaTime);
     }
 
     private Vector3 calculateThreshold() {

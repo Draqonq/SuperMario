@@ -28,6 +28,9 @@ public class PlayerData : MonoBehaviour
     public bool winLevel = false;
     float winLevelAddScore = 0;
 
+    //Sound
+    public SoundManager soundManager;
+
     private void Start()
     {
         marioPlayer = GameObject.Find("MarioPlayer").GetComponent<Transform>();
@@ -45,6 +48,7 @@ public class PlayerData : MonoBehaviour
     public void AddCoins(int coins)
     {
         this.coins += coins;
+        soundManager.PlaySound(SoundName.Coin);
     }
 
     public void AddScore(int score)
@@ -61,6 +65,8 @@ public class PlayerData : MonoBehaviour
 
     public void Death()
     {
+        marioPlayer.GetComponent<AudioSource>().Stop();
+        soundManager.PlaySound(SoundName.GameOver);
         LivesLoss();
         PlayerPrefs.SetInt("coins", coins);
         PlayerPrefs.SetInt("score", score);
@@ -77,6 +83,7 @@ public class PlayerData : MonoBehaviour
 
     public void LevelUp()
     {
+        soundManager.PlaySound(SoundName.Boost);
         this.level++;
         AddScore(1000);
         SetLevel();
@@ -93,21 +100,21 @@ public class PlayerData : MonoBehaviour
         if(level == 1)
         {
             marioPlayer.localScale = new Vector2(1, 1);
-            fireBallTransform.localScale = new Vector2(0.2f, 0.2f);
+            fireBallTransform.localScale = new Vector2(0.3f, 0.3f);
             marioSprite.color = Color.white;
             //sprite normal
         }
         else if (level == 2)
         {
             marioPlayer.localScale = new Vector2(1, 2);
-            fireBallTransform.localScale = new Vector2(0.2f, 0.1f);
+            fireBallTransform.localScale = new Vector2(0.3f, 0.15f);
             marioSprite.color = Color.white;
             //sprite normal
         }
         else if (level >= 3)
         {
             marioPlayer.localScale = new Vector2(1, 2);
-            fireBallTransform.localScale = new Vector2(0.2f, 0.1f);
+            fireBallTransform.localScale = new Vector2(0.3f, 0.15f);
             marioSprite.color = new Color(0.4f, 0,0);
             //sprite white
         }
@@ -122,12 +129,12 @@ public class PlayerData : MonoBehaviour
         return level;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         //Player Dead
         if (isDead)
         {
-            marioPlayer.position += new Vector3(0, 1.5f * Time.deltaTime, 0);
+            marioPlayer.position += new Vector3(0, 1.5f * Time.fixedDeltaTime, 0);
             if(marioPlayer.position.y >= deadStartPosition + 1)
             {
                 isDead = false;
@@ -146,9 +153,9 @@ public class PlayerData : MonoBehaviour
         //time to end
         if(time > 0 && !winLevel)
         {
-            time -= Time.deltaTime;
+            time -= Time.fixedDeltaTime;
             //ui.SetTimeText(time);
-            if (time % 1.0 < 0.01f)
+            if (time % 1.0 < 0.04f)
             {
                 int intTime = (int)time;
                 ui.SetTimeText(intTime);
@@ -163,7 +170,7 @@ public class PlayerData : MonoBehaviour
         }
         else if (winLevel)
         {
-            winLevelAddScore += Time.deltaTime;
+            winLevelAddScore += Time.fixedDeltaTime;
             if(winLevelAddScore >= 0.04f && time > 0)
             {
                 time--;

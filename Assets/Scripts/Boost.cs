@@ -6,7 +6,7 @@ public class Boost : MonoBehaviour
 {
     PlayerData playerData;
     
-    public Vector3 dropBoostSpeed = new Vector3(0, 0.01f);
+    public Vector3 dropBoostSpeed = new Vector3(0, 0.1f);
     Vector3 startPosition;
 
     bool isPushed;
@@ -18,7 +18,7 @@ public class Boost : MonoBehaviour
         playerData = GameObject.Find("Data").GetComponent<PlayerData>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         DropBoost();
         MoveBoost();
@@ -26,14 +26,14 @@ public class Boost : MonoBehaviour
 
     void DropBoost()
     {
-        if (transform.position.y < (startPosition.y + .5f) && !isPushed)
+        if (transform.position.y < (startPosition.y + 0.1f) && !isPushed)
         {
             transform.position += dropBoostSpeed;
         }
         else if (!isPushed)
         {
             isPushed = true;
-            boostMove = new Vector3(.0025f, 0);
+            boostMove = new Vector3(.04f, 0);
         }
     }
 
@@ -57,11 +57,11 @@ public class Boost : MonoBehaviour
         {
             if(collision.gameObject.transform.position.x > transform.position.x)
             {
-                boostMove = new Vector3(-0.0025f, 0);
+                boostMove = new Vector3(-.04f, 0);
             }
             else
             {
-                boostMove = new Vector3(0.0025f, 0);
+                boostMove = new Vector3(.04f, 0);
             }
         }
     }

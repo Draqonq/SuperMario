@@ -96,4 +96,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dcd08bbebd348340ae6c8d9f9a40298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropCoinSpeed: {x: 0, y: 0.01, z: 0}
+  dropCoinSpeed: 0.05

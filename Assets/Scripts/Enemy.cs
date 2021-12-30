@@ -26,13 +26,13 @@ public class Enemy : MonoBehaviour
         enemyCollider = GetComponent<BoxCollider2D>();
         if (enemyType.Equals(EnemyType.Mushroom))
         {
-            enemyMove = new Vector3(.0025f, 0);
+            enemyMove = new Vector3(.04f, 0);
             enemyAnimator.SetInteger("EnemyType", 0);
             destroyTimer = 0;
         }
         else if (enemyType.Equals(EnemyType.Tortoise))
         {
-            enemyMove = new Vector3(.0025f, 0);
+            enemyMove = new Vector3(.04f, 0);
             enemyAnimator.SetInteger("EnemyType", 2);
             enemyAnimator.SetFloat("Horizontal", 1);
             destroyTimer = 0;
@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         //Grzyb
         if (enemyType.Equals(EnemyType.Mushroom))
@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                destroyTimer += Time.deltaTime;
+                destroyTimer += Time.fixedDeltaTime;
                 if (destroyTimer > 1.2f)
                 {
                     Destroy(gameObject);
@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                destroyTimer += Time.deltaTime;
+                destroyTimer += Time.fixedDeltaTime;
                 if (destroyTimer > 1.2f)
                 {
                     Destroy(gameObject);
@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour
         {
             if (flowerTransformUp) //Up
             {
-                transform.position += new Vector3(0, Time.deltaTime * 0.5f, 0);
+                transform.position += new Vector3(0, Time.fixedDeltaTime * 0.5f, 0);
                 if (transform.position.y > flowerStartPositionY + 2)
                 {
                     flowerTransformUp = false;
@@ -92,7 +92,7 @@ public class Enemy : MonoBehaviour
             }
             else //Down
             {
-                transform.position -= new Vector3(0, Time.deltaTime * 0.5f, 0);
+                transform.position -= new Vector3(0, Time.fixedDeltaTime * 0.5f, 0);
                 if (transform.position.y < flowerStartPositionY)
                 {
                     transform.position = new Vector3(transform.position.x, flowerStartPositionY, transform.position.z);
@@ -104,19 +104,23 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((collision.gameObject.CompareTag("Collisions") || collision.gameObject.CompareTag("Enemy")) 
+        if ((collision.gameObject.CompareTag("Collisions") || collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boost")) 
             && (enemyType.Equals(EnemyType.Mushroom) || enemyType.Equals(EnemyType.Tortoise)))
         {
             if (collision.gameObject.transform.position.x > transform.position.x)
             {
-                enemyMove = new Vector3(-0.0025f, 0);
+                enemyMove = new Vector3(-.04f, 0);
                 enemyAnimator.SetFloat("Horizontal", -1);
             }
             else
             {
-                enemyMove = new Vector3(0.0025f, 0);
+                enemyMove = new Vector3(.04f, 0);
                 enemyAnimator.SetFloat("Horizontal", 1);
             }
+        }
+        else if (collision.gameObject.CompareTag("FieldOfDeath"))
+        {
+            Destroy(gameObject);
         }
     }
 

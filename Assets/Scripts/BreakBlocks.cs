@@ -21,7 +21,8 @@ public class BreakBlocks : MonoBehaviour
     bool movesUp = true;
     bool isEmptyBlock = false;
     Vector3 startPosition;
-    Vector3 transformSpeed = new Vector3(0, 0.0125f, 0);
+    //Vector3 transformSpeed = new Vector3(0, 0.0125f, 0);
+    Vector3 transformSpeed = new Vector3(0, 0.05f, 0);
 
     PlayerData playerData;
 
@@ -30,7 +31,7 @@ public class BreakBlocks : MonoBehaviour
         playerData = GameObject.Find("Data").GetComponent<PlayerData>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (isBreaking && !isEmptyBlock)
         {
@@ -134,7 +135,7 @@ public class BreakBlocks : MonoBehaviour
     void DropMushroom()
     {
         //drop mushroom + animation
-        Instantiate(boost, (transform.position + new Vector3(0, 0, 1)), Quaternion.identity);
+        Instantiate(boost, (transform.position + new Vector3(0, 0.2f, 1)), Quaternion.identity);
     }
 
     void ChangeBlockSprite()

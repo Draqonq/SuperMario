@@ -23,11 +23,11 @@ public class Fireball : MonoBehaviour
         startPosition = transform.localPosition;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (isShooting)
         {
-            shootingTimer += Time.deltaTime;
+            shootingTimer += Time.fixedDeltaTime;
             if (rb.velocity.y < velocity.y)
             {
                 rb.velocity = velocity;
@@ -45,6 +45,10 @@ public class Fireball : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
+            StopShoot();
+        }
+        else if (collision.gameObject.CompareTag("End"))
+        {
             StopShoot();
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MarioController : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class MarioController : MonoBehaviour
     private LayerMask platformLayerMask;
     private Vector2 startPosition;
 
+    public SoundManager soundManager;
+
 
     private void Awake()
     {
@@ -25,16 +28,16 @@ public class MarioController : MonoBehaviour
         playerCollider = GetComponent<CapsuleCollider2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
-    void Update()
+    void FixedUpdate()
     {
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.position += new Vector3(1, 0) * runVelocity * Time.deltaTime;
+            transform.position += new Vector3(1, 0) * runVelocity * Time.fixedDeltaTime;
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.position += new Vector3(-1, 0) * runVelocity * Time.deltaTime;
+            transform.position += new Vector3(-1, 0) * runVelocity * Time.fixedDeltaTime;
         }
         // jumping/falling
         if (isGrounded())
@@ -43,6 +46,7 @@ public class MarioController : MonoBehaviour
             {
                 // if you hit jump then give it some vertical speed
                 rb.velocity = Vector2.up * jumpVelocity;
+                soundManager.PlaySound(SoundName.Jump);
                 //transform.position += new Vector3(0, 1) * jumpSpeed * Time.deltaTime;
             }
         }

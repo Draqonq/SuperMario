@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    public float dropCoinSpeed = 0.01f;
+    public float dropCoinSpeed = 0.5f;
 
     Vector3 dropCoinVector;
     Vector3 startPosition;
@@ -17,7 +17,7 @@ public class Coin : MonoBehaviour
         dropCoinVector = new Vector3(0, dropCoinSpeed);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         DropCoin();
     }
