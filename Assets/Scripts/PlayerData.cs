@@ -181,6 +181,7 @@ public class PlayerData : MonoBehaviour
             else if(time <= 0)
             {
                 winLevel = false;
+                SceneManager.LoadScene("Menu");
                 //Kolejny poziom <---
             }
         }

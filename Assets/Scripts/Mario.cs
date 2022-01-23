@@ -75,7 +75,7 @@ public class Mario : MonoBehaviour
             //Shoot
             if (Input.GetKey(KeyCode.Space) && playerData.GetLevel() > 2)
             {
-                fireball.Shoot();
+                fireball.Shoot(horizontalMove);
             }
 
         }
@@ -185,7 +185,10 @@ public class Mario : MonoBehaviour
 
     public void ButtonShoot()
     {
-        fireball.Shoot();
+        if(playerData.GetLevel() > 2)
+        {
+            fireball.Shoot(horizontalMove);
+        }
     }
 
     public void EndLevel(float endXPosition)

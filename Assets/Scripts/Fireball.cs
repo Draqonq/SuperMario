@@ -47,7 +47,7 @@ public class Fireball : MonoBehaviour
             Destroy(collision.gameObject);
             StopShoot();
         }
-        else if (collision.gameObject.CompareTag("End"))
+        else if (collision.gameObject.CompareTag("End") || collision.gameObject.CompareTag("FieldOfDeath"))
         {
             StopShoot();
         }
@@ -62,10 +62,18 @@ public class Fireball : MonoBehaviour
         }
     }
 
-    public void Shoot()
+    public void Shoot(float direction)
     {
         if (!isShooting)
         {
+            if (direction >= 0)
+            {
+                velocity.x *= 1;
+            }
+            else
+            {
+                velocity.x *= -1;
+            }
             transform.localPosition = startPosition;
             rb.bodyType = RigidbodyType2D.Dynamic;
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);

@@ -95,7 +95,7 @@ public class Enemy : MonoBehaviour
                 transform.position -= new Vector3(0, Time.fixedDeltaTime * 0.5f, 0);
                 if (transform.position.y < flowerStartPositionY)
                 {
-                    transform.position = new Vector3(transform.position.x, flowerStartPositionY, transform.position.z);
+                    transform.position = new Vector3(transform.position.x, flowerStartPositionY, 2);
                     flowerTransformUp = true;
                 }
             }
